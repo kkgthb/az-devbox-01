@@ -20,6 +20,27 @@ module dc './devcenter.bicep' = {
   params: {
     dcName: '${solutionName}${envNickname}'
     dcLocation: location
+  }
+}
+
+module kv './keyvault.bicep' = {
+  name: '${solutionName}-kv-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    keyVaultName: '${solutionName}-kv-${envNickname}'
+    keyVaultEnvNickname: envNickname
+    keyVaultLocation: location
+    consumingDevCenterPrincipalId: dc.outputs.dcPrincipalId
+    consumingDevCenterName: dc.outputs.dcName
+  }
+}
+
+module dcc './devcentercatalog.bicep' = {
+  name: '${solutionName}-dcc-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
     dccName: '${solutionName}-dcc-${envNickname}'
+    dcName: dc.outputs.dcName
+    kvSecretUri: kv.outputs.secretUri
   }
 }

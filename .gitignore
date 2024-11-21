@@ -1,6 +1,7 @@
 .vscode
 .ignoreme
 node_modules
+tempfilebc.json
 
 # DEBUG LINE ONLY
 package-lock.json

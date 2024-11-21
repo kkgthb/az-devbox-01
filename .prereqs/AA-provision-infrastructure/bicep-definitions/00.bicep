@@ -18,7 +18,7 @@ module dc './devcenter.bicep' = {
   name: '${solutionName}-dc-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {
-    dcName: '${solutionName}${envNickname}'
+    dcName: '${solutionName}-dc-${envNickname}'
     dcLocation: location
   }
 }

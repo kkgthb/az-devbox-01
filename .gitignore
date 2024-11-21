@@ -1,0 +1,6 @@
+.vscode
+.ignoreme
+node_modules
+
+# DEBUG LINE ONLY
+package-lock.json

@@ -1,3 +1,5 @@
+// https://github.com/search?q=%22Microsoft.DevCenter%2Fdevcenters%2Fcatalogs%22+%22Microsoft.KeyVault%2Fvaults%22&type=code
+
 targetScope = 'resourceGroup'
 
 param dcName string

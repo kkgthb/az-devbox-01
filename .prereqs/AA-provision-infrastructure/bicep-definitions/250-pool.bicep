@@ -1,3 +1,5 @@
+// Pool:  "a collection of dev boxes that have the same settings (e.g. same dev box definition, same network connection, etc.)
+
 targetScope = 'resourceGroup'
 
 param dcplName string

@@ -55,15 +55,6 @@ module dcd './210-boxdefinition.bicep' = {
   }
 }
 
-module dcet './220-envtype.bicep' = {
-  name: '${solutionName}-dcet-${envNickname}'
-  scope: resourceGroup(rsrcGrp.name)
-  params: {
-    dcetName: '${solutionName}-dcet-${envNickname}'
-    dcName: dc.outputs.dcName
-  }
-}
-
 module dcpr './240-project.bicep' = {
   name: '${solutionName}-dcpr-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)

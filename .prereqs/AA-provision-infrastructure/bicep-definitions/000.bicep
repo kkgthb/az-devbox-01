@@ -55,23 +55,23 @@ module dcd './210-boxdefinition.bicep' = {
   }
 }
 
-module dcpr './240-project.bicep' = {
-  name: '${solutionName}-dcpr-${envNickname}'
-  scope: resourceGroup(rsrcGrp.name)
-  params: {
-    dcprName: '${solutionName}-dcpr-${envNickname}'
-    dcprLocation: location
-    dcId: dc.outputs.dcId
-  }
-}
+// module dcpr './240-project.bicep' = {
+//   name: '${solutionName}-dcpr-${envNickname}'
+//   scope: resourceGroup(rsrcGrp.name)
+//   params: {
+//     dcprName: '${solutionName}-dcpr-${envNickname}'
+//     dcprLocation: location
+//     dcId: dc.outputs.dcId
+//   }
+// }
 
-module dcpl './250-pool.bicep' = {
-  name: '${solutionName}-dcpl-${envNickname}'
-  scope: resourceGroup(rsrcGrp.name)
-  params: {
-    dcplName: '${solutionName}-dcpl-${envNickname}'
-    dcplLocation: location
-    dcdName: dcd.outputs.dcdName
-    dcprName: dcpr.outputs.dcprName
-  }
-}
+// module dcpl './250-pool.bicep' = {
+//   name: '${solutionName}-dcpl-${envNickname}'
+//   scope: resourceGroup(rsrcGrp.name)
+//   params: {
+//     dcplName: '${solutionName}-dcpl-${envNickname}'
+//     dcplLocation: location
+//     dcdName: dcd.outputs.dcdName
+//     dcprName: dcpr.outputs.dcprName
+//   }
+// }

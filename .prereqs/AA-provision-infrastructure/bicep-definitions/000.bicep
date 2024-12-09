@@ -5,7 +5,7 @@ var location = 'centralus'
 
 param envNickname string
 
-module rsrcGrp './resourcegroup.bicep' = {
+module rsrcGrp './100-resourcegroup.bicep' = {
   name: '${solutionName}-rg-${envNickname}'
   scope: subscription()
   params: {
@@ -14,7 +14,7 @@ module rsrcGrp './resourcegroup.bicep' = {
   }
 }
 
-module dc './devcenter.bicep' = {
+module dc './200-devcenter.bicep' = {
   name: '${solutionName}-dc-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {
@@ -23,7 +23,17 @@ module dc './devcenter.bicep' = {
   }
 }
 
-module kv './keyvault.bicep' = {
+module dcd './230-devcenterdefinition.bicep' = {
+  name: '${solutionName}-dcd-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    dcdName: '${solutionName}-dcd-${envNickname}'
+    dcdLocation: location
+    dcName: dc.outputs.dcName
+  }
+}
+
+module kv './278-keyvault.bicep' = {
   name: '${solutionName}-kv-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {
@@ -35,7 +45,7 @@ module kv './keyvault.bicep' = {
   }
 }
 
-module dcc './devcentercatalog.bicep' = {
+module dcc './279-devcentercatalog.bicep' = {
   name: '${solutionName}-dcc-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {

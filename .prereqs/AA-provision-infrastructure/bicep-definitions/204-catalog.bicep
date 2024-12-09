@@ -1,3 +1,5 @@
+// TODO:  get my Task showing up in the catalog.  It still does not yet.  Sad.
+
 targetScope = 'resourceGroup'
 
 param dccName string

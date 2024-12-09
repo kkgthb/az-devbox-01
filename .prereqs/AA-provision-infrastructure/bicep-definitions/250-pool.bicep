@@ -23,6 +23,6 @@ resource dcpl 'Microsoft.DevCenter/projects/pools@2024-02-01' = {
   properties: {
     devBoxDefinitionName: dcdName
     licenseType: licenseType
-    // localAdministrator: 'Enabled' // Unsure what the right thing to do here is
+    localAdministrator: 'Enabled' // "Indicates whether owners of Dev Boxes in this pool are added as local administrators on the Dev Box."  https://azuresdkdocs.blob.core.windows.net/$web/java/azure-resourcemanager-devcenter/1.0.0-beta.1/com/azure/resourcemanager/devcenter/models/Pool.html#localAdministrator()
   }
 }

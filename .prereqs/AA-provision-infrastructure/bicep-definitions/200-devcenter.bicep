@@ -24,3 +24,4 @@ resource dc 'Microsoft.DevCenter/devcenters@2024-10-01-preview' = {
 
 output dcPrincipalId string = dc.identity.principalId
 output dcName string = dc.name
+output dcId string = dc.id

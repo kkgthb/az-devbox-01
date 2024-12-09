@@ -30,8 +30,12 @@ param dcName string
 // 'microsoftvisualstudio_visualstudioplustools_vs-2022-pro-general-win10-m365-gen2'
 var imageId = 'microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2' // Okay, yeah, this seems like a good one, if that's really the valid list.
 
+// https://learn.microsoft.com/en-us/python/api/azure-developer-devcenter/azure.developer.devcenter.models.hardwareprofile?view=azure-python
+// Valid strings
 // https://azure.microsoft.com/en-us/pricing/details/dev-box/
 // "8 vCPU, 32 GB RAM, 256 GB Storage" is the cheapest as of 12/9/2024
+// https://gist.github.com/colbylwilliams/175e33349bf09afdf1456d515bb79c1d
+// Looks like I don't need a separate "osStorageType" below because it's already in the "sku" string.
 var skuName = 'general_i_8c32gb256ssd_v2' // Looks good -- seems to match the description of the cheapest option.
 
 resource dc 'Microsoft.DevCenter/devcenters@2024-10-01-preview' existing = {
@@ -52,3 +56,5 @@ resource dcd 'Microsoft.DevCenter/devcenters/devboxdefinitions@2024-02-01' = {
     hibernateSupport: 'Disabled'
   }
 }
+
+output dcdName string = dcd.name

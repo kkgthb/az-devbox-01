@@ -23,17 +23,7 @@ module dc './200-devcenter.bicep' = {
   }
 }
 
-module dcd './230-devcenterdefinition.bicep' = {
-  name: '${solutionName}-dcd-${envNickname}'
-  scope: resourceGroup(rsrcGrp.name)
-  params: {
-    dcdName: '${solutionName}-dcd-${envNickname}'
-    dcdLocation: location
-    dcName: dc.outputs.dcName
-  }
-}
-
-module kv './278-keyvault.bicep' = {
+module kv './203-keyvault.bicep' = {
   name: '${solutionName}-kv-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {
@@ -45,12 +35,52 @@ module kv './278-keyvault.bicep' = {
   }
 }
 
-module dcc './279-devcentercatalog.bicep' = {
+module dcc './204-catalog.bicep' = {
   name: '${solutionName}-dcc-${envNickname}'
   scope: resourceGroup(rsrcGrp.name)
   params: {
     dccName: '${solutionName}-dcc-${envNickname}'
     dcName: dc.outputs.dcName
     kvSecretUri: kv.outputs.secretUri
+  }
+}
+
+module dcd './210-boxdefinition.bicep' = {
+  name: '${solutionName}-dcd-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    dcdName: '${solutionName}-dcd-${envNickname}'
+    dcdLocation: location
+    dcName: dc.outputs.dcName
+  }
+}
+
+module dcet './220-envtype.bicep' = {
+  name: '${solutionName}-dcet-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    dcetName: '${solutionName}-dcet-${envNickname}'
+    dcName: dc.outputs.dcName
+  }
+}
+
+module dcpr './240-project.bicep' = {
+  name: '${solutionName}-dcpr-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    dcprName: '${solutionName}-dcpr-${envNickname}'
+    dcprLocation: location
+    dcId: dc.outputs.dcId
+  }
+}
+
+module dcpl './250-pool.bicep' = {
+  name: '${solutionName}-dcpl-${envNickname}'
+  scope: resourceGroup(rsrcGrp.name)
+  params: {
+    dcplName: '${solutionName}-dcpl-${envNickname}'
+    dcplLocation: location
+    dcdName: dcd.outputs.dcdName
+    dcprName: dcpr.outputs.dcprName
   }
 }
